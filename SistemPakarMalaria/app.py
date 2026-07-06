@@ -13,9 +13,30 @@ st.set_page_config(
 if "riwayat" not in st.session_state:
     st.session_state.riwayat = []
 
+import os
+
+# ================= LOGO ==================
+logo_paths = [
+    "assets/logo.png",
+    "./assets/logo.png",
+    "SistemPakarMalaria/assets/logo.png",
+    "./SistemPakarMalaria/assets/logo.png",
+    "logo.png"
+]
+
+logo_file = None
+
+for path in logo_paths:
+    if os.path.exists(path):
+        logo_file = path
+        break
+
 # ================= SIDEBAR ==================
 with st.sidebar:
-    st.image("assets/logo.png", width=150)
+
+    if logo_file:
+        st.image(logo_file, width=150)
+
     st.title("🦟 Sistem Pakar")
 
     menu = st.selectbox(
